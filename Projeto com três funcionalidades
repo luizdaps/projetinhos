@@ -1,0 +1,75 @@
+# Projeto com três funcionalidades: Cadastro de Alunos, Calculadora e Agenda Telefônica
+
+# -------------------- Cadastro de Alunos --------------------
+class Aluno:
+    def __init__(self, nome, matricula):
+        self.nome = nome
+        self.matricula = matricula
+
+class CadastroAlunos:
+    def __init__(self):
+        self.alunos = []
+
+    def adicionar_aluno(self, nome, matricula):
+        self.alunos.append(Aluno(nome, matricula))
+
+    def listar_alunos(self):
+        for aluno in self.alunos:
+            print(f"Nome: {aluno.nome}, Matrícula: {aluno.matricula}")
+
+# -------------------- Calculadora --------------------
+def somar(a, b):
+    return a + b
+
+def subtrair(a, b):
+    return a - b
+
+def multiplicar(a, b):
+    return a * b
+
+def dividir(a, b):
+    if b == 0:
+        return "Erro: divisão por zero"
+    return a / b
+
+# -------------------- Agenda Telefônica --------------------
+class Contato:
+    def __init__(self, nome, telefone):
+        self.nome = nome
+        self.telefone = telefone
+
+class AgendaTelefonica:
+    def __init__(self):
+        self.contatos = []
+
+    def adicionar_contato(self, nome, telefone):
+        self.contatos.append(Contato(nome, telefone))
+
+    def listar_contatos(self):
+        for contato in self.contatos:
+            print(f"Nome: {contato.nome}, Telefone: {contato.telefone}")
+
+# -------------------- Exemplo de uso --------------------
+if __name__ == "__main__":
+    print("Sistema com Cadastro de Alunos, Calculadora e Agenda Telefônica")
+
+    # Cadastro de alunos
+    cadastro = CadastroAlunos()
+    cadastro.adicionar_aluno("Ana", "2023001")
+    cadastro.adicionar_aluno("Carlos", "2023002")
+    print("\nAlunos cadastrados:")
+    cadastro.listar_alunos()
+
+    # Calculadora
+    print("\nCalculadora:")
+    print("5 + 3 =", somar(5, 3))
+    print("10 - 4 =", subtrair(10, 4))
+    print("6 * 7 =", multiplicar(6, 7))
+    print("8 / 2 =", dividir(8, 2))
+
+    # Agenda telefônica
+    agenda = AgendaTelefonica()
+    agenda.adicionar_contato("João", "99999-0000")
+    agenda.adicionar_contato("Maria", "98888-1111")
+    print("\nContatos da agenda:")
+    agenda.listar_contatos()
