@@ -1,0 +1,90 @@
+1-Nomeie seu copiloto (ex: SuporteDigitalIbura).
+
+Escolha o idioma (ex: Português - Brasil).
+
+Defina o site ou canal (Teams, Site Web, etc.).
+
+Clique em "Criar".
+
+ 2-. Criar e Personalizar um Tópico
+No menu lateral, vá em "Tópicos".
+
+Clique em "+ Novo Tópico".
+
+Nomeie o tópico (ex: Agendamento de Aulas).
+
+Em Gatilhos, adicione frases como:
+
+"Quero agendar uma aula"
+
+"Como posso marcar um horário?"
+
+"Preciso de ajuda com agendamento"
+
+Clique em "Ir para o autor do tópico" para editar o fluxo de conversa.
+
+ 3 - Criar o Fluxo de Conversa
+Exemplo de fluxo:
+
+plaintext
+Copiar
+Editar
+Bot: Olá! Você quer agendar uma aula. Qual é o seu nome?
+→ Captura de variável: Nome do usuário
+
+Bot: Qual o melhor dia e horário para você?
+→ Captura de variável: DiaHora
+
+Bot: Aula agendada para {{DiaHora}} no nome de {{Nome}}. Deseja receber uma confirmação por e-mail?
+→ Captura de variável: Email
+
+Bot: Confirmação enviada para {{Email}}! Até breve!
+→ Encerrar Tópico
+Você pode usar caixas de entrada de usuário, condições, e chamadas a ações externas (APIs) se desejar integração com sistemas reais.
+
+ 4 - Ativar Respostas com GenAI (Resposta Generativa)
+Vá para "Configurações" > "Respostas Generativas".
+
+Ative o uso de GenAI com base em conteúdo da base de conhecimento ou URL externa.
+
+Insira uma URL de FAQ ou página informativa, por exemplo:
+
+https://seusite.com/faq
+
+Agora, o Copilot usará o conteúdo dessa URL para responder perguntas abertas com inteligência generativa.
+
+ 5 - Personalizar Mensagens de Erro
+Vá para "Configurações" > "Mensagens do Sistema".
+
+Edite mensagens como:
+
+Mensagem padrão quando o bot não entende:
+
+plaintext
+Copiar
+Editar
+Desculpe, não entendi isso. Pode reformular sua pergunta ou digite "ajuda" para ver as opções.
+Mensagem para erro interno:
+
+plaintext
+Copiar
+Editar
+Opa! Algo deu errado aqui. Estamos trabalhando para resolver. Tente novamente em alguns instantes.
+ 6. Testar e Publicar o Copilot
+Clique em "Testar seu Copilot" no canto direito.
+
+Simule a conversa com frases diferentes.
+
+Após validar, clique em "Publicar" no topo direito para torná-lo ativo.
+
+ Resultado Final
+Você terá um copiloto com:
+
+Tópico personalizado para agendamento.
+
+Mensagens ajustadas para erros e falhas de entendimento.
+
+Respostas aprimoradas com inteligência generativa (GenAI).
+
+Um fluxo natural e eficiente para seu público.
+
