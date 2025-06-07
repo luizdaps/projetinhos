@@ -1,0 +1,221 @@
+Preparação Completa para Publicação no PyPI
+Vou te fornecer todos os arquivos prontos para publicação. Você só precisará seguir os passos finais para enviar para o PyPI.
+
+Estrutura Final do Projeto
+text
+meu_pacote_imagens/
+│
+├── meu_pacote_imagens/
+│   ├── __init__.py
+│   ├── transformacoes.py
+│   ├── filtros.py
+│   └── utils.py
+│
+├── setup.py
+├── README.md
+├── LICENSE
+└── requirements.txt
+Arquivos Prontos
+1. meu_pacote_imagens/init.py:
+
+python
+from .transformacoes import escala_cinza, redimensionar, rotacionar
+from .filtros import aplicar_filtro
+from .utils import carregar_imagem, salvar_imagem, mostrar_imagem
+
+__all__ = [
+    'escala_cinza',
+    'redimensionar',
+    'rotacionar',
+    'aplicar_filtro',
+    'carregar_imagem',
+    'salvar_imagem',
+    'mostrar_imagem'
+]
+
+__version__ = '0.1.0'
+2. meu_pacote_imagens/utils.py:
+
+python
+import cv2
+
+def carregar_imagem(caminho):
+    """Carrega uma imagem do caminho especificado.
+    
+    Args:
+        caminho (str): Caminho para o arquivo de imagem
+        
+    Returns:
+        numpy.ndarray: Imagem carregada
+    """
+    return cv2.imread(caminho)
+
+def salvar_imagem(imagem, caminho):
+    """Salva a imagem no caminho especificado.
+    
+    Args:
+        imagem (numpy.ndarray): Imagem a ser salva
+        caminho (str): Caminho de destino
+    """
+    cv2.imwrite(caminho, imagem)
+
+def mostrar_imagem(imagem, titulo='Imagem'):
+    """Mostra a imagem em uma janela.
+    
+    Args:
+        imagem (numpy.ndarray): Imagem a ser exibida
+        titulo (str, optional): Título da janela. Defaults to 'Imagem'.
+    """
+    cv2.imshow(titulo, imagem)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+3. meu_pacote_imagens/transformacoes.py:
+
+python
+import cv2
+
+def escala_cinza(imagem):
+    """Converte a imagem para escala de cinza.
+    
+    Args:
+        imagem (numpy.ndarray): Imagem colorida
+        
+    Returns:
+        numpy.ndarray: Imagem em escala de cinza
+    """
+    return cv2.cvtColor(imagem, cv2.COLOR_BGR2GRAY)
+
+def redimensionar(imagem, largura=None, altura=None, proporcao=None):
+    """Redimensiona a imagem mantendo a proporção.
+    
+    Args:
+        imagem (numpy.ndarray): Imagem original
+        largura (int, optional): Largura desejada. Defaults to None.
+        altura (int, optional): Altura desejada. Defaults to None.
+        proporcao (float, optional): Fator de escala. Defaults to None.
+        
+    Returns:
+        numpy.ndarray: Imagem redimensionada
+    """
+    if proporcao is not None:
+        return cv2.resize(imagem, (0, 0), fx=proporcao, fy=proporcao)
+    if largura is None and altura is None:
+        return imagem
+    if largura is None:
+        razao = altura / imagem.shape[0]
+        return cv2.resize(imagem, (0, 0), fx=razao, fy=razao)
+    if altura is None:
+        razao = largura / imagem.shape[1]
+        return cv2.resize(imagem, (0, 0), fx=razao, fy=razao)
+    return cv2.resize(imagem, (largura, altura))
+
+def rotacionar(imagem, angulo):
+    """Rotaciona a imagem pelo ângulo especificado.
+    
+    Args:
+        imagem (numpy.ndarray): Imagem original
+        angulo (float): Ângulo de rotação em graus
+        
+    Returns:
+        numpy.ndarray: Imagem rotacionada
+    """
+    (h, w) = imagem.shape[:2]
+    centro = (w // 2, h // 2)
+    M = cv2.getRotationMatrix2D(centro, angulo, 1.0)
+    return cv2.warpAffine(imagem, M, (w, h))
+4. meu_pacote_imagens/filtros.py:
+
+python
+import cv2
+
+def aplicar_filtro(imagem, tipo_filtro, tamanho_kernel=3):
+    """Aplica um filtro à imagem.
+    
+    Args:
+        imagem (numpy.ndarray): Imagem original
+        tipo_filtro (str): Tipo de filtro ('media', 'gaussiano', 'mediana', 'bordas')
+        tamanho_kernel (int, optional): Tamanho do kernel. Defaults to 3.
+        
+    Returns:
+        numpy.ndarray: Imagem filtrada
+        
+    Raises:
+        ValueError: Se o tipo de filtro não for suportado
+    """
+    if tipo_filtro == 'media':
+        return cv2.blur(imagem, (tamanho_kernel, tamanho_kernel))
+    elif tipo_filtro == 'gaussiano':
+        return cv2.GaussianBlur(imagem, (tamanho_kernel, tamanho_kernel), 0)
+    elif tipo_filtro == 'mediana':
+        return cv2.medianBlur(imagem, tamanho_kernel)
+    elif tipo_filtro == 'bordas':
+        return cv2.Laplacian(imagem, cv2.CV_64F)
+    else:
+        raise ValueError("Tipo de filtro não suportado. Use: 'media', 'gaussiano', 'mediana' ou 'bordas'")
+5. setup.py:
+
+python
+from setuptools import setup, find_packages
+
+with open("README.md", "r", encoding="utf-8") as fh:
+    long_description = fh.read()
+
+setup(
+    name="meu_pacote_imagens",
+    version="0.1.0",
+    author="LuizDaps",
+    description="Pacote para processamento básico de imagens com OpenCV",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    packages=find_packages(),
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+        "Intended Audience :: Developers",
+        "Intended Audience :: Education",
+        "Intended Audience :: Science/Research",
+        "Topic :: Scientific/Engineering :: Image Processing",
+    ],
+    python_requires=">=3.6",
+    install_requires=[
+        "numpy>=1.19.0",
+        "opencv-python>=4.5.0",
+        "Pillow>=8.0.0",
+    ],
+    keywords="image processing opencv pillow",
+)
+6. README.md:
+
+markdown
+# Meu Pacote de Processamento de Imagens
+
+Um pacote Python simples para processamento básico de imagens usando OpenCV.
+
+## Funcionalidades
+
+- Conversão para escala de cinza
+- Redimensionamento
+- Rotação
+- Aplicação de filtros (média, gaussiano, mediana, detecção de bordas)
+- Carregamento e salvamento de imagens
+
+## Instalação
+
+```bash
+pip install meu_pacote_imagens
+Uso Básico
+python
+from meu_pacote_imagens import *
+
+# Carregar imagem
+img = carregar_imagem('caminho/para/imagem.jpg')
+
+# Converter para escala de cinza
+img_cinza = escala_cinza(img)
+
+# Aplicar filtro gaussiano
+img_filtrada = aplicar_filtro(img, 'gaussiano')
+
+# Salvar imagem
+salvar_imagem(img_filtrada, 'imagem_processada.jpg')
