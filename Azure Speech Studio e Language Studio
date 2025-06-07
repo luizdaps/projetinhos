@@ -1,0 +1,77 @@
+Estrutura de Repositório
+
+azure-ai-lab/
+│
+├── README.md
+├── .gitignore
+│
+├── speech_studio/
+│   ├── anotações.md
+│   ├── capturas/
+│   │   ├── configuracao_speech_to_text.png
+│   │   └── resultados_testes.png
+│   └── exemplos/
+│       └── transcricao_teste.txt
+│
+├── language_studio/
+│   ├── anotações.md
+│   ├── capturas/
+│   │   ├── analise_sentimentos.png
+│   │   └── extracao_entidades.png
+│   └── exemplos/
+│       └── texto_analisado.txt
+│
+└── insights_finais/
+    ├── reflexoes.md
+    └── ideias_de_aplicacao.md
+
+
+
+
+🎯 Objetivo
+
+Desenvolver habilidades práticas no uso das ferramentas de IA da Microsoft para criar, testar e analisar soluções baseadas em:
+
+Conversão de fala em texto (Speech to Text)
+
+Síntese de voz (Text to Speech)
+
+Análise de sentimentos
+
+Extração de entidades nomeadas (NER)
+
+Classificação de texto
+
+🧪 Atividades Realizadas
+
+Criação de um recurso Speech no Azure Portal
+
+Configuração e teste do Speech to Text
+
+Geração de fala a partir de texto com vozes neurais
+
+Análise de sentimentos de textos variados
+
+Extração de entidades como nomes, locais e datas
+
+Avaliação dos resultados e limitações
+
+✅ Resultados Esperados
+
+Compreensão prática do uso das ferramentas de IA da Microsoft
+
+Material de apoio para estudos futuros e implementações em projetos
+
+🧠 Tecnologias Utilizadas
+
+Azure Speech Studio
+
+Azure Language Studio
+
+📌 Requisitos
+
+Conta Microsoft com acesso ao Azure
+
+Navegador moderno e conexão com a internet
+
+Conhecimentos básicos em IA e PLN
